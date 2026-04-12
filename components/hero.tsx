@@ -1,37 +1,67 @@
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Truck, Shield, Zap } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background py-24 md:py-40">
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-12%20at%2013.35.21-cC7acYI1ql3dOh4VnxjkDuQRS1fqjc.jpeg')`
-        }}
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background/95" />
-      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-transparent via-background/50 to-transparent" />
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-primary/5" />
-      <div className="container mx-auto px-4 relative">
-        <div className="max-w-3xl mx-auto text-center">
-          <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
-            Suplementos de calidad
-          </span>
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground mb-6 text-balance">
-            Potencia tu <span className="text-primary">rendimiento</span> al máximo
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image
+          src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-12%20at%2013.35.21-cC7acYI1ql3dOh4VnxjkDuQRS1fqjc.jpeg"
+          alt="JBoost productos de suplementos"
+          fill
+          className="object-cover opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <div className="text-center">
+          {/* Main Title */}
+          <h1 className="font-sans text-5xl sm:text-7xl lg:text-8xl tracking-wide text-foreground mb-6">
+            <span className="block font-bold">IMPULSA TU</span>
+            <span className="block text-primary font-bold">RENDIMIENTO</span>
           </h1>
-          <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-2xl mx-auto text-pretty">
-            Descubre nuestra selección de suplementos deportivos premium. Proteínas, creatina, vitaminas y todo lo que necesitas para alcanzar tus metas fitness.
+
+          <p className="max-w-2xl mx-auto text-lg sm:text-xl text-muted-foreground mb-10 leading-relaxed">
+            Suplementos deportivos de alta calidad para atletas que buscan
+            superar sus límites. Potencia tu entrenamiento con JBoost.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="font-semibold">
-              Ver catálogo
-              <ArrowRight className="ml-2 h-4 w-4" />
+
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+            <Button
+              size="lg"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6"
+            >
+              Ver Catálogo
+              <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button size="lg" variant="outline" className="font-semibold">
-              Contactar
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-border text-foreground hover:bg-secondary text-lg px-8 py-6"
+            >
+              Ofertas Especiales
             </Button>
+          </div>
+
+          {/* Features */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div className="flex items-center justify-center gap-3 bg-card/50 rounded-xl px-4 py-3 border border-border">
+              <Truck className="h-5 w-5 text-primary" />
+              <span className="text-sm text-foreground">Envío Express</span>
+            </div>
+            <div className="flex items-center justify-center gap-3 bg-card/50 rounded-xl px-4 py-3 border border-border">
+              <Shield className="h-5 w-5 text-primary" />
+              <span className="text-sm text-foreground">100% Original</span>
+            </div>
+            <div className="flex items-center justify-center gap-3 bg-card/50 rounded-xl px-4 py-3 border border-border">
+              <Zap className="h-5 w-5 text-primary" />
+              <span className="text-sm text-foreground">Pago Seguro</span>
+            </div>
           </div>
         </div>
       </div>
