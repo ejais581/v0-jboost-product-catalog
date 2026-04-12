@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { ArrowRight, Truck, Shield, Zap } from "lucide-react"
+import { ArrowRight, Shield, Zap } from "lucide-react"
 
 export function Hero() {
   return (
@@ -49,11 +49,7 @@ export function Hero() {
           </div>
 
           {/* Features */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-3 bg-card/50 rounded-xl px-4 py-3 border border-border">
-              <Truck className="h-5 w-5 text-primary" />
-              <span className="text-sm text-foreground">Envío Express</span>
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-2xl mx-auto">
             <div className="flex items-center justify-center gap-3 bg-card/50 rounded-xl px-4 py-3 border border-border">
               <Shield className="h-5 w-5 text-primary" />
               <span className="text-sm text-foreground">100% Original</span>
