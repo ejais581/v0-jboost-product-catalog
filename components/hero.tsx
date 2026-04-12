@@ -10,8 +10,9 @@ export function Hero() {
           backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-12%20at%2013.35.21-cC7acYI1ql3dOh4VnxjkDuQRS1fqjc.jpeg')`
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background/95" />
+      <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-transparent via-background/50 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-primary/5" />
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
