@@ -3,8 +3,14 @@ import { ArrowRight } from "lucide-react"
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden bg-background py-20 md:py-32">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-primary/20 via-background to-background" />
+    <section className="relative overflow-hidden bg-background py-24 md:py-40">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-12%20at%2013.35.21-cC7acYI1ql3dOh4VnxjkDuQRS1fqjc.jpeg')`
+        }}
+      />
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
       <div className="container mx-auto px-4 relative">
         <div className="max-w-3xl mx-auto text-center">
           <span className="inline-block px-4 py-1.5 mb-6 text-xs font-semibold tracking-wider text-primary uppercase bg-primary/10 rounded-full">
