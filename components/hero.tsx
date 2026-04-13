@@ -20,9 +20,9 @@ export function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
           {/* Main Title */}
-          <h1 className="font-sans text-5xl sm:text-7xl lg:text-8xl tracking-wide text-foreground mb-6">
-            <span className="block font-bold">IMPULSA TU</span>
-            <span className="block text-primary font-bold">RENDIMIENTO</span>
+          <h1 className="font-[family-name:var(--font-display)] text-5xl sm:text-7xl lg:text-8xl tracking-wide text-foreground mb-6">
+            <span className="block">IMPULSA TU</span>
+            <span className="block text-primary">RENDIMIENTO</span>
           </h1>
 
           <p className="max-w-2xl mx-auto text-lg sm:text-xl text-muted-foreground mb-10 leading-relaxed">
@@ -32,13 +32,15 @@ export function Hero() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-            <Button
-              size="lg"
-              className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6"
-            >
-              Ver Catálogo
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            <a href="#productos">
+              <Button
+                size="lg"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 text-lg px-8 py-6"
+              >
+                Ver Catálogo
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </Button>
+            </a>
             <Button
               variant="outline"
               size="lg"
