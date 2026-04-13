@@ -10,7 +10,7 @@ const products = [
     name: "Whey Protein Vainilla",
     brand: "Star Nutrition",
     category: "Proteína",
-    description: "Proteína de suero de leche micro filtrada con 25g de proteína por porción. Sabor Vainilla Ice Cream.",
+    description: "Proteína de suero de leche micro filtrada con 25g de proteína por porción.",
     image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202026-04-12%20at%2018.34.06-SnIXMD7kzQBWFmJiKYnsZL2RsSRr3S.jpeg",
     servings: "30",
     weight: "908g",

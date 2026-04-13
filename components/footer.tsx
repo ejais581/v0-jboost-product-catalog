@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Instagram, MessageCircle } from "lucide-react"
+import { Instagram, Facebook, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
@@ -47,28 +47,18 @@ export function Footer() {
           {/* Contact */}
           <div>
             <h3 className="font-semibold text-foreground mb-4">Contacto</h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="https://wa.me/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  WhatsApp
-                </a>
+            <ul className="space-y-3">
+              <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                <Mail className="h-4 w-4 text-primary" />
+                jboostfit@gmail.com
               </li>
-              <li>
-                <a
-                  href="https://instagram.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"
-                >
-                  <Instagram className="h-4 w-4" />
-                  Instagram
-                </a>
+              <li className="flex items-center gap-3 text-sm text-muted-foreground">
+                <Phone className="h-4 w-4 text-primary" />
+                +54 3835-500992
+              </li>
+              <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                <MapPin className="h-4 w-4 text-primary mt-0.5" />
+                <span>Belen, Catamarca</span>
               </li>
             </ul>
           </div>
