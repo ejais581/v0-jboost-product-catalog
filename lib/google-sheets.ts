@@ -30,7 +30,7 @@ export async function getProducts(): Promise<Product[]> {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Productos!A2:M", // Skip header row
+      range: "Hoja 1!A2:O", // Skip header row - adjust sheet name if different
     });
 
     const rows = response.data.values;
