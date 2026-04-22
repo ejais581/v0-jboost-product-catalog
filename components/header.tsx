@@ -20,17 +20,14 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
+          <Link href="#inicio" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Inicio
+          </Link>
           <Link href="#productos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Productos
           </Link>
-          <Link href="#proteinas" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Proteínas
-          </Link>
-          <Link href="#creatina" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Creatina
-          </Link>
-          <Link href="#vitaminas" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-            Vitaminas
+          <Link href="#contacto" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Contacto
           </Link>
         </nav>
 
@@ -59,6 +56,13 @@ export function Header() {
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
             <Link
+              href="#inicio"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Inicio
+            </Link>
+            <Link
               href="#productos"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
@@ -66,25 +70,11 @@ export function Header() {
               Productos
             </Link>
             <Link
-              href="#proteinas"
+              href="#contacto"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Proteínas
-            </Link>
-            <Link
-              href="#creatina"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Creatina
-            </Link>
-            <Link
-              href="#vitaminas"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Vitaminas
+              Contacto
             </Link>
           </nav>
         </div>
