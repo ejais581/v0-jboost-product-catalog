@@ -30,6 +30,7 @@ interface ProductCardProps {
   whatIs: string
   benefits: string
   bestTime: string
+  flavors?: string[]
 }
 
 export function ProductCard({
@@ -46,8 +47,10 @@ export function ProductCard({
   whatIs,
   benefits,
   bestTime,
+  flavors = [],
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1)
+  const [selectedFlavor, setSelectedFlavor] = useState(flavors.length > 0 ? flavors[0] : "")
   const [showAdded, setShowAdded] = useState(false)
   const { addToCart } = useCart()
 
@@ -58,11 +61,12 @@ export function ProductCard({
     addToCart(
       {
         id,
-        name,
+        name: selectedFlavor ? `${name} - ${selectedFlavor}` : name,
         brand,
         image,
         price,
         weight,
+        flavor: selectedFlavor || undefined,
       },
       quantity
     )
@@ -114,6 +118,25 @@ export function ProductCard({
           )}
         </div>
         
+        {/* Flavor Selector */}
+        {flavors.length > 0 && (
+          <div className="mb-3">
+            <label className="text-sm text-muted-foreground mb-2 block">Sabor:</label>
+            <select
+              value={selectedFlavor}
+              onChange={(e) => setSelectedFlavor(e.target.value)}
+              className="w-full px-3 py-2 bg-secondary text-foreground rounded-md border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+              disabled={!inStock}
+            >
+              {flavors.map((flavor) => (
+                <option key={flavor} value={flavor}>
+                  {flavor}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
         {/* Price */}
         <div className="mb-3">
           <span className="text-2xl font-bold text-primary">

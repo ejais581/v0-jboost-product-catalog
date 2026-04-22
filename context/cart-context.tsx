@@ -10,6 +10,7 @@ export interface CartItem {
   price: number
   quantity: number
   weight?: string
+  flavor?: string
 }
 
 interface CartContextType {
@@ -29,13 +30,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const addToCart = (item: Omit<CartItem, "quantity">, quantity: number) => {
     setItems(prev => {
-      const existingItem = prev.find(i => i.id === item.id)
+      // Create unique key with id and flavor
+      const cartKey = item.flavor ? `${item.id}-${item.flavor}` : item.id
+      const existingItem = prev.find(i => {
+        const existingKey = i.flavor ? `${i.id}-${i.flavor}` : i.id
+        return existingKey === cartKey
+      })
       if (existingItem) {
-        return prev.map(i =>
-          i.id === item.id
+        return prev.map(i => {
+          const iKey = i.flavor ? `${i.id}-${i.flavor}` : i.id
+          return iKey === cartKey
             ? { ...i, quantity: i.quantity + quantity }
             : i
-        )
+        })
       }
       return [...prev, { ...item, quantity }]
     })
