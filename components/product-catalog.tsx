@@ -1,12 +1,30 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { ProductCard } from "./product-card"
 import { Button } from "@/components/ui/button"
+import { Loader2 } from "lucide-react"
 
-const products = [
+interface Product {
+  id: string
+  name: string
+  brand: string
+  category: string
+  weight: string
+  servings: string
+  description: string
+  image: string
+  price: number
+  inStock: boolean
+  whatIs: string
+  benefits: string
+  bestTime: string
+}
+
+// Productos por defecto para mostrar mientras no hay conexion a Google Sheets
+const defaultProducts: Product[] = [
   {
-    id: 1,
+    id: "1",
     name: "Whey Protein Vainilla",
     brand: "Star Nutrition",
     category: "Proteína",
@@ -16,12 +34,12 @@ const products = [
     weight: "908g",
     price: 45000,
     inStock: true,
-    whatIsIt: "La Whey Protein es una proteína de suero de leche de alta calidad, obtenida mediante un proceso de micro filtración que preserva los aminoácidos esenciales.",
+    whatIs: "La Whey Protein es una proteína de suero de leche de alta calidad, obtenida mediante un proceso de micro filtración que preserva los aminoácidos esenciales.",
     benefits: "Ayuda a la recuperación muscular después del entrenamiento, promueve el crecimiento de masa muscular magra y aporta 25g de proteína de alta biodisponibilidad por porción.",
     bestTime: "Ideal consumir dentro de los 30 minutos posteriores al entrenamiento para maximizar la síntesis proteica. También puede tomarse en el desayuno.",
   },
   {
-    id: 2,
+    id: "2",
     name: "Creatina Monohydrate",
     brand: "Star Nutrition",
     category: "Creatina",
@@ -31,12 +49,12 @@ const products = [
     weight: "300g",
     price: 18000,
     inStock: true,
-    whatIsIt: "La creatina monohidrato es uno de los suplementos más estudiados y efectivos para mejorar el rendimiento deportivo. Es una molécula que se encuentra naturalmente en el cuerpo.",
+    whatIs: "La creatina monohidrato es uno de los suplementos más estudiados y efectivos para mejorar el rendimiento deportivo. Es una molécula que se encuentra naturalmente en el cuerpo.",
     benefits: "Aumenta la fuerza y potencia muscular, mejora el rendimiento en ejercicios de alta intensidad, y ayuda a ganar masa muscular magra.",
     bestTime: "Puede tomarse en cualquier momento del día. Muchos prefieren tomarla post-entrenamiento junto con carbohidratos para mejor absorción.",
   },
   {
-    id: 3,
+    id: "3",
     name: "Creatina BSN",
     brand: "BSN",
     category: "Creatina",
@@ -46,12 +64,12 @@ const products = [
     weight: "309g",
     price: 22000,
     inStock: true,
-    whatIsIt: "Creatina monohidrato de grado farmacéutico de la reconocida marca BSN. Sin sabor para mezclar fácilmente con cualquier bebida.",
+    whatIs: "Creatina monohidrato de grado farmacéutico de la reconocida marca BSN. Sin sabor para mezclar fácilmente con cualquier bebida.",
     benefits: "Incrementa los niveles de fosfocreatina muscular, mejora la recuperación entre series y aumenta la capacidad de trabajo en entrenamientos intensos.",
     bestTime: "Tomar 5g diarios, preferiblemente después del entrenamiento mezclada con tu batido de proteínas o jugo.",
   },
   {
-    id: 4,
+    id: "4",
     name: "Creatine Micronized 200g",
     brand: "One Fit Nutrition",
     category: "Creatina",
@@ -61,12 +79,12 @@ const products = [
     weight: "200g",
     price: 15000,
     inStock: false,
-    whatIsIt: "Creatina micronizada de partículas ultra finas para mejor disolución y absorción, enriquecida con Vitamina C como antioxidante.",
+    whatIs: "Creatina micronizada de partículas ultra finas para mejor disolución y absorción, enriquecida con Vitamina C como antioxidante.",
     benefits: "La micronización permite una absorción más rápida. La Vitamina C añadida ayuda a combatir el estrés oxidativo del entrenamiento intenso.",
     bestTime: "Consumir una porción de 5g al día. Puede dividirse en 2.5g pre-entrenamiento y 2.5g post-entrenamiento.",
   },
   {
-    id: 5,
+    id: "5",
     name: "Creatine Micronized 500g",
     brand: "One Fit Nutrition",
     category: "Creatina",
@@ -76,12 +94,12 @@ const products = [
     weight: "500g",
     price: 28000,
     inStock: true,
-    whatIsIt: "Creatina monohidrato micronizada de máxima pureza. El tamaño de partícula reducido garantiza mejor mezcla y absorción.",
+    whatIs: "Creatina monohidrato micronizada de máxima pureza. El tamaño de partícula reducido garantiza mejor mezcla y absorción.",
     benefits: "Aumenta los depósitos de ATP muscular para más energía durante el ejercicio, mejora la hidratación celular y acelera la recuperación.",
     bestTime: "Tomar 5g diarios de forma consistente. Los días de entrenamiento tomarla post-ejercicio, los días de descanso en cualquier momento con una comida.",
   },
   {
-    id: 6,
+    id: "6",
     name: "Pump 3D Ripped",
     brand: "Star Nutrition",
     category: "Pre-entreno",
@@ -91,12 +109,12 @@ const products = [
     weight: "315g",
     price: 32000,
     inStock: true,
-    whatIsIt: "Pre-entreno de alta potencia formulado con cafeína, taurina, beta-alanina y extractos vegetales para máxima energía y pump muscular.",
+    whatIs: "Pre-entreno de alta potencia formulado con cafeína, taurina, beta-alanina y extractos vegetales para máxima energía y pump muscular.",
     benefits: "Aumenta la energía y el enfoque mental, mejora el pump y la vascularización, retrasa la fatiga y aumenta el rendimiento en el entrenamiento.",
     bestTime: "Tomar 20-30 minutos antes del entrenamiento. No consumir cerca de la hora de dormir debido a su contenido de cafeína. Evitar en niños.",
   },
   {
-    id: 7,
+    id: "7",
     name: "Collagen Plus",
     brand: "Star Nutrition",
     category: "Colágeno",
@@ -106,12 +124,12 @@ const products = [
     weight: "360g",
     price: 25000,
     inStock: true,
-    whatIsIt: "Colágeno hidrolizado de alta biodisponibilidad enriquecido con Vitamina C y minerales esenciales para la síntesis de colágeno.",
+    whatIs: "Colágeno hidrolizado de alta biodisponibilidad enriquecido con Vitamina C y minerales esenciales para la síntesis de colágeno.",
     benefits: "Fortalece articulaciones, tendones y ligamentos, mejora la elasticidad de la piel, fortalece uñas y cabello, y ayuda a prevenir lesiones.",
     bestTime: "Tomar una porción diaria en ayunas o antes de dormir para maximizar la absorción. Puede mezclarse con agua o jugo.",
   },
   {
-    id: 8,
+    id: "8",
     name: "Multivitamin All in One",
     brand: "Star Nutrition",
     category: "Vitaminas",
@@ -121,12 +139,12 @@ const products = [
     weight: "60 comp",
     price: 12000,
     inStock: true,
-    whatIsIt: "Fórmula completa de vitaminas y minerales diseñada para cubrir las necesidades nutricionales de personas activas y deportistas.",
+    whatIs: "Fórmula completa de vitaminas y minerales diseñada para cubrir las necesidades nutricionales de personas activas y deportistas.",
     benefits: "Cubre deficiencias nutricionales, fortalece el sistema inmune, mejora los niveles de energía y apoya la función metabólica óptima.",
     bestTime: "Tomar 1 comprimido al día con el desayuno o almuerzo, junto con alimentos para mejor absorción de las vitaminas liposolubles.",
   },
   {
-    id: 9,
+    id: "9",
     name: "Omega 3 Fish Oil",
     brand: "Star Nutrition",
     category: "Vitaminas",
@@ -136,7 +154,7 @@ const products = [
     weight: "60 caps",
     price: 14000,
     inStock: false,
-    whatIsIt: "Cápsulas de aceite de pescado rico en ácidos grasos esenciales EPA y DHA, fundamentales para la salud cardiovascular y cerebral.",
+    whatIs: "Cápsulas de aceite de pescado rico en ácidos grasos esenciales EPA y DHA, fundamentales para la salud cardiovascular y cerebral.",
     benefits: "Reduce la inflamación, mejora la salud cardiovascular, apoya la función cerebral y cognitiva, y ayuda en la recuperación muscular.",
     bestTime: "Tomar 1-2 cápsulas al día con las comidas principales. Puede tomarse junto con el desayuno y/o la cena.",
   },
@@ -146,6 +164,28 @@ const categories = ["Todos", "Proteína", "Creatina", "Pre-entreno", "Vitaminas"
 
 export function ProductCatalog() {
   const [activeCategory, setActiveCategory] = useState("Todos")
+  const [products, setProducts] = useState<Product[]>(defaultProducts)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    async function fetchProducts() {
+      try {
+        const response = await fetch('/api/products')
+        if (response.ok) {
+          const data = await response.json()
+          if (data.length > 0) {
+            setProducts(data)
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchProducts()
+  }, [])
 
   const filteredProducts = activeCategory === "Todos"
     ? products
@@ -187,12 +227,28 @@ export function ProductCatalog() {
           ))}
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-12">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+          </div>
+        )}
+
         {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredProducts.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
-        </div>
+        {!loading && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && filteredProducts.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground">No hay productos en esta categoría</p>
+          </div>
+        )}
       </div>
     </section>
   )

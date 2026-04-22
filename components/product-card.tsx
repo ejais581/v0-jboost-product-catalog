@@ -25,7 +25,7 @@ interface ProductCardProps {
   weight?: string
   price: number
   inStock: boolean
-  whatIsIt: string
+  whatIs: string
   benefits: string
   bestTime: string
 }
@@ -40,7 +40,7 @@ export function ProductCard({
   weight,
   price,
   inStock,
-  whatIsIt,
+  whatIs,
   benefits,
   bestTime,
 }: ProductCardProps) {
@@ -122,7 +122,7 @@ export function ProductCard({
                     <span className="w-2 h-2 bg-primary rounded-full"></span>
                     Que es?
                   </h4>
-                  <p className="text-sm text-muted-foreground">{whatIsIt}</p>
+                  <p className="text-sm text-muted-foreground">{whatIs}</p>
                 </div>
                 <div>
                   <h4 className="font-semibold text-foreground mb-2 flex items-center gap-2">
