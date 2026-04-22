@@ -12,7 +12,7 @@ import { ArrowLeft, Loader2, CheckCircle, ShoppingBag, User, Phone, Mail, MapPin
 
 export default function CheckoutPage() {
   const router = useRouter()
-  const { items, getTotal, clearCart } = useCart()
+  const { items, totalPrice, clearCart } = useCart()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [orderComplete, setOrderComplete] = useState(false)
   const [orderNumber, setOrderNumber] = useState("")
@@ -86,7 +86,7 @@ export default function CheckoutPage() {
             quantity: item.quantity,
             price: item.price,
           })),
-          total: getTotal(),
+          total: totalPrice,
         }),
       })
       
@@ -277,7 +277,7 @@ export default function CheckoutPage() {
                       Procesando...
                     </>
                   ) : (
-                    `Realizar Pedido - $${getTotal().toLocaleString("es-AR")}`
+                    `Realizar Pedido - $${totalPrice.toLocaleString("es-AR")}`
                   )}
                 </Button>
               </form>
@@ -319,7 +319,7 @@ export default function CheckoutPage() {
               <div className="border-t border-border pt-4 mt-4">
                 <div className="flex justify-between items-center text-lg font-bold">
                   <span className="text-foreground">Total</span>
-                  <span className="text-primary">${getTotal().toLocaleString("es-AR")}</span>
+                  <span className="text-primary">${totalPrice.toLocaleString("es-AR")}</span>
                 </div>
               </div>
             </CardContent>
