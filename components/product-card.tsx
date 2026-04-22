@@ -50,7 +50,7 @@ export function ProductCard({
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1))
 
   return (
-    <Card className="group overflow-hidden border-border bg-card hover:border-primary/50 transition-all duration-300">
+    <Card className="group overflow-hidden border-border bg-card hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
       <div className="relative aspect-square overflow-hidden bg-muted">
         <Image
           src={image}
@@ -69,7 +69,7 @@ export function ProductCard({
           </div>
         )}
       </div>
-      <CardContent className="p-4">
+      <CardContent className="p-4 flex flex-col h-full">
         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
           {brand}
         </p>
@@ -92,8 +92,11 @@ export function ProductCard({
           )}
         </div>
         
+        {/* Spacer to push content down */}
+        <div className="flex-grow"></div>
+        
         {/* Price */}
-        <div className="mb-4">
+        <div className="mb-4 mt-auto">
           <span className="text-2xl font-bold text-primary">
             ${price.toLocaleString('es-AR')}
           </span>
@@ -143,33 +146,33 @@ export function ProductCard({
           </Dialog>
         </div>
 
-        {/* Quantity Selector */}
-        {inStock && (
-          <div className="flex items-center justify-between gap-2 mb-3">
-            <span className="text-sm text-muted-foreground">Cantidad:</span>
-            <div className="flex items-center gap-2">
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8"
-                onClick={decreaseQuantity}
-              >
-                <Minus className="h-4 w-4" />
-              </Button>
-              <span className="w-8 text-center font-semibold text-foreground">
-                {quantity}
-              </span>
-              <Button
-                variant="outline"
-                size="icon"
-                className="h-8 w-8"
-                onClick={increaseQuantity}
-              >
-                <Plus className="h-4 w-4" />
-              </Button>
-            </div>
+        {/* Quantity Selector - Always visible for consistent card height */}
+        <div className={`flex items-center justify-between gap-2 mb-3 ${!inStock ? 'opacity-50' : ''}`}>
+          <span className="text-sm text-muted-foreground">Cantidad:</span>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8"
+              onClick={decreaseQuantity}
+              disabled={!inStock}
+            >
+              <Minus className="h-4 w-4" />
+            </Button>
+            <span className="w-8 text-center font-semibold text-foreground">
+              {quantity}
+            </span>
+            <Button
+              variant="outline"
+              size="icon"
+              className="h-8 w-8"
+              onClick={increaseQuantity}
+              disabled={!inStock}
+            >
+              <Plus className="h-4 w-4" />
+            </Button>
           </div>
-        )}
+        </div>
 
         {/* Add to Cart Button */}
         <Button 
