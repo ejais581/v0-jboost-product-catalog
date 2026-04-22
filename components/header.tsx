@@ -4,9 +4,11 @@ import Link from "next/link"
 import { ShoppingCart, Menu, X } from "lucide-react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { useCart } from "@/context/cart-context"
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { totalItems } = useCart()
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -20,24 +22,28 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="#inicio" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/#inicio" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Inicio
           </Link>
-          <Link href="#productos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/#productos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Productos
           </Link>
-          <Link href="#contacto" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/#contacto" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Contacto
           </Link>
         </nav>
 
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="relative">
-            <ShoppingCart className="h-5 w-5" />
-            <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
-              0
-            </span>
-          </Button>
+          <Link href="/carrito">
+            <Button variant="ghost" size="icon" className="relative">
+              <ShoppingCart className="h-5 w-5" />
+              {totalItems > 0 && (
+                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full bg-primary text-[10px] font-bold text-primary-foreground flex items-center justify-center">
+                  {totalItems > 99 ? "99+" : totalItems}
+                </span>
+              )}
+            </Button>
+          </Link>
 
           {/* Mobile Menu Button */}
           <Button
@@ -56,21 +62,21 @@ export function Header() {
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
             <Link
-              href="#inicio"
+              href="/#inicio"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Inicio
             </Link>
             <Link
-              href="#productos"
+              href="/#productos"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Productos
             </Link>
             <Link
-              href="#contacto"
+              href="/#contacto"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >

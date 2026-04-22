@@ -13,9 +13,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { ShoppingCart, Info, Plus, Minus } from "lucide-react"
+import { ShoppingCart, Info, Plus, Minus, Check } from "lucide-react"
+import { useCart } from "@/context/cart-context"
 
 interface ProductCardProps {
+  id: string
   name: string
   brand: string
   category: string
@@ -31,6 +33,7 @@ interface ProductCardProps {
 }
 
 export function ProductCard({
+  id,
   name,
   brand,
   category,
@@ -45,9 +48,28 @@ export function ProductCard({
   bestTime,
 }: ProductCardProps) {
   const [quantity, setQuantity] = useState(1)
+  const [showAdded, setShowAdded] = useState(false)
+  const { addToCart } = useCart()
 
   const increaseQuantity = () => setQuantity(prev => prev + 1)
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1))
+
+  const handleAddToCart = () => {
+    addToCart(
+      {
+        id,
+        name,
+        brand,
+        image,
+        price,
+        weight,
+      },
+      quantity
+    )
+    setShowAdded(true)
+    setTimeout(() => setShowAdded(false), 2000)
+    setQuantity(1)
+  }
 
   return (
     <Card className="group overflow-hidden border-border bg-card hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
@@ -176,9 +198,19 @@ export function ProductCard({
           className="w-full font-semibold" 
           size="sm"
           disabled={!inStock}
+          onClick={handleAddToCart}
         >
-          <ShoppingCart className="mr-2 h-4 w-4" />
-          {inStock ? "Agregar al carrito" : "Sin Stock"}
+          {showAdded ? (
+            <>
+              <Check className="mr-2 h-4 w-4" />
+              Agregado
+            </>
+          ) : (
+            <>
+              <ShoppingCart className="mr-2 h-4 w-4" />
+              {inStock ? "Agregar al carrito" : "Sin Stock"}
+            </>
+          )}
         </Button>
       </CardContent>
     </Card>
