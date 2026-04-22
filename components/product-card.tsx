@@ -69,7 +69,7 @@ export function ProductCard({
           </div>
         )}
       </div>
-      <CardContent className="p-4 flex flex-col h-full">
+      <CardContent className="p-4 flex flex-col">
         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
           {brand}
         </p>
@@ -92,11 +92,8 @@ export function ProductCard({
           )}
         </div>
         
-        {/* Spacer to push content down */}
-        <div className="flex-grow"></div>
-        
         {/* Price */}
-        <div className="mb-4 mt-auto">
+        <div className="mb-3">
           <span className="text-2xl font-bold text-primary">
             ${price.toLocaleString('es-AR')}
           </span>
