@@ -1,5 +1,53 @@
 import { google } from "googleapis";
 
+export interface Order {
+  orderNumber: string;
+  customerName: string;
+  customerPhone: string;
+  customerAddress: string;
+  customerEmail: string;
+  products: string;
+  total: number;
+  date: string;
+}
+
+export async function saveOrder(order: Order): Promise<boolean> {
+  try {
+    const auth = new google.auth.GoogleAuth({
+      credentials: {
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      },
+      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+    });
+
+    const sheets = google.sheets({ version: "v4", auth });
+
+    await sheets.spreadsheets.values.append({
+      spreadsheetId: process.env.GOOGLE_SHEET_ID,
+      range: "Pedidos!A:H",
+      valueInputOption: "USER_ENTERED",
+      requestBody: {
+        values: [[
+          order.orderNumber,
+          order.customerName,
+          order.customerPhone,
+          order.customerAddress,
+          order.customerEmail,
+          order.products,
+          order.total,
+          order.date,
+        ]],
+      },
+    });
+
+    return true;
+  } catch (error) {
+    console.error("Error saving order to Google Sheets:", error);
+    return false;
+  }
+}
+
 export interface Product {
   id: string;
   name: string;

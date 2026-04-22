@@ -169,9 +169,11 @@ export default function CarritoPage() {
                     </div>
                   </div>
 
-                  <Button className="w-full font-semibold" size="lg">
-                    Finalizar pedido
-                  </Button>
+                  <Link href="/checkout">
+                    <Button className="w-full font-semibold" size="lg">
+                      Realizar pedido
+                    </Button>
+                  </Link>
 
                   <Link href="/#productos" className="block mt-4">
                     <Button variant="outline" className="w-full" size="lg">
