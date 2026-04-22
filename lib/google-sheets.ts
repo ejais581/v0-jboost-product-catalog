@@ -62,6 +62,7 @@ export interface Product {
   whatIs: string;
   benefits: string;
   bestTime: string;
+  flavors: string[];
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -101,6 +102,7 @@ export async function getProducts(): Promise<Product[]> {
       whatIs: row[10] || "",
       benefits: row[11] || "",
       bestTime: row[12] || "",
+      flavors: row[13] ? row[13].split(",").map((f: string) => f.trim()).filter((f: string) => f.length > 0) : [],
     }));
   } catch (error) {
     console.error("Error fetching products from Google Sheets:", error);
