@@ -17,7 +17,7 @@ async function updateOrdersHeaders() {
     range: "Pedidos!A1:I1",
     valueInputOption: "USER_ENTERED",
     requestBody: {
-      values: [["orderNumber", "customerName", "customerPhone", "customerLocality", "customerAddress", "customerEmail", "products", "total", "date"]],
+      values: [["Numero Pedido", "Nombre", "Telefono", "Localidad", "Direccion", "Email", "Productos", "Total", "Fecha"]],
     },
   });
 
