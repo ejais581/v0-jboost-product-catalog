@@ -22,6 +22,7 @@ export async function POST(request: Request) {
       orderNumber,
       customerName,
       customerPhone,
+      customerLocality,
       customerAddress,
       customerEmail,
       products: productsString,

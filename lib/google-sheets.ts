@@ -4,6 +4,7 @@ export interface Order {
   orderNumber: string;
   customerName: string;
   customerPhone: string;
+  customerLocality: string;
   customerAddress: string;
   customerEmail: string;
   products: string;
@@ -25,13 +26,14 @@ export async function saveOrder(order: Order): Promise<boolean> {
 
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Pedidos!A:H",
+      range: "Pedidos!A:I",
       valueInputOption: "USER_ENTERED",
       requestBody: {
         values: [[
           order.orderNumber,
           order.customerName,
           order.customerPhone,
+          order.customerLocality,
           order.customerAddress,
           order.customerEmail,
           order.products,
