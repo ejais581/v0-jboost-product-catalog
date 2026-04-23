@@ -193,7 +193,7 @@ export function ProductCatalog() {
     : products.filter(product => product.category === activeCategory)
 
   return (
-    <section id="productos" className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
+    <section id="productos" className="py-8 sm:py-16 md:py-24 relative overflow-hidden">
       {/* Gradient fade from hero - connects smoothly */}
       <div className="absolute -top-32 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-transparent" />
       
