@@ -12,8 +12,8 @@ export async function POST(request: Request) {
     
     // Format products for storage
     const productsString = items
-      .map((item: { name: string; quantity: number; price: number }) => 
-        `${item.name} x${item.quantity} ($${item.price.toLocaleString("es-AR")})`
+      .map((item: { name: string; brand: string; weight: string; quantity: number; price: number }) => 
+        `${item.name} (${item.brand}${item.weight ? ` - ${item.weight}` : ""}) x${item.quantity} ($${item.price.toLocaleString("es-AR")})`
       )
       .join(" | ");
     
@@ -46,8 +46,14 @@ export async function POST(request: Request) {
     message += `*Dirección:* ${customerAddress}\n\n`;
     message += `*PRODUCTOS:*\n`;
     
-    items.forEach((item: { name: string; quantity: number; price: number }) => {
-      message += `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString("es-AR")}\n`;
+    items.forEach((item: { name: string; brand: string; weight: string; quantity: number; price: number }) => {
+      message += `• *${item.name}*\n`;
+      message += `  Marca: ${item.brand}\n`;
+      if (item.weight) {
+        message += `  Peso: ${item.weight}\n`;
+      }
+      message += `  Cantidad: ${item.quantity}\n`;
+      message += `  Subtotal: $${(item.price * item.quantity).toLocaleString("es-AR")}\n\n`;
     });
     
     message += `\n*TOTAL A PAGAR: $${total.toLocaleString("es-AR")}*`;

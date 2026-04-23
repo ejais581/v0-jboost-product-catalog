@@ -83,6 +83,8 @@ export default function CheckoutPage() {
           customerAddress: formData.address,
           items: items.map(item => ({
             name: item.name,
+            brand: item.brand,
+            weight: item.weight || "",
             quantity: item.quantity,
             price: item.price,
           })),
