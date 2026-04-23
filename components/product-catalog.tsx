@@ -160,16 +160,13 @@ const defaultProducts: Product[] = [
   },
 ]
 
-const categories = ["Todos", "Proteína", "Creatina", "Pre-entreno", "Vitaminas", "Colágeno"]
-
 export function ProductCatalog() {
   const [activeCategory, setActiveCategory] = useState("Todos")
-  const [activeBrand, setActiveBrand] = useState("Todas")
   const [products, setProducts] = useState<Product[]>(defaultProducts)
   const [loading, setLoading] = useState(true)
 
-  // Generar marcas dinamicamente de los productos
-  const brands = ["Todas", ...Array.from(new Set(products.map(p => p.brand))).sort()]
+  // Generar categorias dinamicamente de los productos
+  const categories = ["Todos", ...Array.from(new Set(products.map(p => p.category))).sort()]
 
   useEffect(() => {
     async function fetchProducts() {
@@ -191,11 +188,9 @@ export function ProductCatalog() {
     fetchProducts()
   }, [])
 
-  const filteredProducts = products.filter(product => {
-    const matchesCategory = activeCategory === "Todos" || product.category === activeCategory
-    const matchesBrand = activeBrand === "Todas" || product.brand === activeBrand
-    return matchesCategory && matchesBrand
-  })
+  const filteredProducts = activeCategory === "Todos"
+    ? products
+    : products.filter(product => product.category === activeCategory)
 
   return (
     <section id="productos" className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
@@ -219,7 +214,7 @@ export function ProductCatalog() {
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6 px-2">
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12 px-2">
           {categories.map((category) => (
             <Button
               key={category}
@@ -229,21 +224,6 @@ export function ProductCatalog() {
               className="font-medium text-xs sm:text-sm px-2.5 sm:px-3"
             >
               {category}
-            </Button>
-          ))}
-        </div>
-
-        {/* Brand Filter */}
-        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12 px-2">
-          {brands.map((brand) => (
-            <Button
-              key={brand}
-              variant={activeBrand === brand ? "default" : "ghost"}
-              size="sm"
-              onClick={() => setActiveBrand(brand)}
-              className="font-medium text-xs sm:text-sm px-2.5 sm:px-3"
-            >
-              {brand}
             </Button>
           ))}
         </div>
