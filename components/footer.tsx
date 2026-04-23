@@ -1,9 +1,9 @@
 import Link from "next/link"
-import { Instagram, Facebook, Mail, Phone, MapPin } from "lucide-react"
+import { Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-card py-12">
+    <footer id="contacto" className="border-t border-border bg-card py-12">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -13,33 +13,38 @@ export function Footer() {
               <span className="text-2xl font-bold tracking-tight text-primary">BOOST</span>
             </Link>
             <p className="text-muted-foreground text-sm max-w-md">
-              Tu tienda de confianza para suplementos deportivos de calidad. Proteínas, creatina, vitaminas y todo lo que necesitas para tu entrenamiento.
+              Tu tienda de confianza para suplementos deportivos de calidad. Proteinas, creatina, vitaminas y todo lo que necesitas para tu entrenamiento.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Categorías</h3>
+            <h3 className="font-semibold text-foreground mb-4">Categorias</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#proteinas" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Proteínas
-                </Link>
+                <a href="#productos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Proteinas
+                </a>
               </li>
               <li>
-                <Link href="#creatina" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#productos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Creatina
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="#vitaminas" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Vitaminas
-                </Link>
-              </li>
-              <li>
-                <Link href="#pre-entreno" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                <a href="#productos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
                   Pre-entreno
-                </Link>
+                </a>
+              </li>
+              <li>
+                <a href="#productos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Vitaminas
+                </a>
+              </li>
+              <li>
+                <a href="#productos" className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  Colageno
+                </a>
               </li>
             </ul>
           </div>
@@ -64,6 +69,7 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Copyright */}
         <div className="border-t border-border mt-8 pt-8 text-center">
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} JBoost. Todos los derechos reservados.

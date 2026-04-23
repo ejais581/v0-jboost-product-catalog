@@ -43,9 +43,9 @@ export default function CarritoPage() {
       <Header />
       <main className="flex-1 py-8 md:py-12">
         <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between mb-8">
-            <h1 className="text-3xl font-bold text-foreground">Mi Carrito</h1>
-            <Button variant="ghost" size="sm" onClick={clearCart} className="text-destructive hover:text-destructive">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8">
+            <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Mi Carrito</h1>
+            <Button variant="ghost" size="sm" onClick={clearCart} className="text-destructive hover:text-destructive w-fit">
               <Trash2 className="mr-2 h-4 w-4" />
               Vaciar carrito
             </Button>
@@ -56,10 +56,10 @@ export default function CarritoPage() {
             <div className="lg:col-span-2 space-y-4">
               {items.map((item) => (
                 <Card key={item.id} className="overflow-hidden">
-                  <CardContent className="p-4">
-                    <div className="flex gap-4">
+                  <CardContent className="p-3 sm:p-4">
+                    <div className="flex gap-3 sm:gap-4">
                       {/* Product Image */}
-                      <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
+                      <div className="relative w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden bg-muted">
                         <Image
                           src={item.image}
                           alt={item.name}
@@ -69,48 +69,48 @@ export default function CarritoPage() {
                       </div>
 
                       {/* Product Info */}
-                      <div className="flex-1 flex flex-col">
+                      <div className="flex-1 flex flex-col min-w-0">
                         <div className="flex-1">
                           <p className="text-xs text-muted-foreground uppercase tracking-wider">
                             {item.brand}
                           </p>
-                          <h3 className="font-semibold text-foreground text-lg">
+                          <h3 className="font-semibold text-foreground text-sm sm:text-lg line-clamp-2">
                             {item.name}
                           </h3>
                           {item.weight && (
-                            <p className="text-sm text-muted-foreground">
+                            <p className="text-xs sm:text-sm text-muted-foreground">
                               {item.weight}
                             </p>
                           )}
                         </div>
 
-                        <div className="flex items-center justify-between mt-3">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 sm:gap-0 mt-2 sm:mt-3">
                           {/* Quantity Controls */}
                           <div className="flex items-center gap-2">
                             <Button
                               variant="outline"
                               size="icon"
-                              className="h-8 w-8"
+                              className="h-7 w-7 sm:h-8 sm:w-8"
                               onClick={() => updateQuantity(item.id, item.quantity - 1)}
                             >
-                              <Minus className="h-4 w-4" />
+                              <Minus className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
-                            <span className="w-8 text-center font-semibold text-foreground">
+                            <span className="w-6 sm:w-8 text-center font-semibold text-foreground text-sm sm:text-base">
                               {item.quantity}
                             </span>
                             <Button
                               variant="outline"
                               size="icon"
-                              className="h-8 w-8"
+                              className="h-7 w-7 sm:h-8 sm:w-8"
                               onClick={() => updateQuantity(item.id, item.quantity + 1)}
                             >
-                              <Plus className="h-4 w-4" />
+                              <Plus className="h-3 w-3 sm:h-4 sm:w-4" />
                             </Button>
                           </div>
 
                           {/* Price */}
-                          <div className="text-right">
-                            <p className="text-lg font-bold text-primary">
+                          <div className="text-left sm:text-right">
+                            <p className="text-base sm:text-lg font-bold text-primary">
                               ${(item.price * item.quantity).toLocaleString('es-AR')}
                             </p>
                             {item.quantity > 1 && (
@@ -126,7 +126,7 @@ export default function CarritoPage() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                        className="h-7 w-7 sm:h-8 sm:w-8 text-muted-foreground hover:text-destructive flex-shrink-0"
                         onClick={() => removeFromCart(item.id)}
                       >
                         <Trash2 className="h-4 w-4" />
@@ -139,8 +139,8 @@ export default function CarritoPage() {
 
             {/* Order Summary */}
             <div className="lg:col-span-1">
-              <Card className="sticky top-24">
-                <CardContent className="p-6">
+              <Card className="lg:sticky lg:top-24">
+                <CardContent className="p-4 sm:p-6">
                   <h2 className="text-xl font-bold text-foreground mb-6">
                     Resumen del pedido
                   </h2>

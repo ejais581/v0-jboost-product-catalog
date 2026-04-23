@@ -95,14 +95,14 @@ export function ProductCard({
           </div>
         )}
       </div>
-      <CardContent className="p-4 flex flex-col">
+      <CardContent className="p-3 sm:p-4 flex flex-col">
         <p className="text-xs text-muted-foreground uppercase tracking-wider mb-1">
           {brand}
         </p>
-        <h3 className="font-bold text-foreground text-lg mb-2 line-clamp-1">
+        <h3 className="font-bold text-foreground text-base sm:text-lg mb-2 line-clamp-2">
           {name}
         </h3>
-        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+        <p className="text-xs sm:text-sm text-muted-foreground mb-3 line-clamp-2">
           {description}
         </p>
         <div className="flex items-center gap-3 mb-3 text-xs text-muted-foreground">
@@ -139,7 +139,7 @@ export function ProductCard({
 
         {/* Price */}
         <div className="mb-3">
-          <span className="text-2xl font-bold text-primary">
+          <span className="text-xl sm:text-2xl font-bold text-primary">
             ${price.toLocaleString('es-AR')}
           </span>
         </div>
@@ -154,7 +154,7 @@ export function ProductCard({
                 Info
               </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-md">
+            <DialogContent className="max-w-[95vw] sm:max-w-md max-h-[85vh] overflow-y-auto">
               <DialogHeader>
                 <DialogTitle className="text-xl">{name}</DialogTitle>
                 <DialogDescription className="text-muted-foreground">

@@ -192,7 +192,7 @@ export function ProductCatalog() {
     : products.filter(product => product.category === activeCategory)
 
   return (
-    <section id="productos" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="productos" className="py-12 sm:py-16 md:py-24 relative overflow-hidden">
       {/* Gradient fade from hero - connects smoothly */}
       <div className="absolute -top-32 left-0 right-0 h-32 bg-gradient-to-b from-transparent to-transparent" />
       
@@ -203,24 +203,24 @@ export function ProductCatalog() {
       <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="text-center mb-8 sm:mb-12 px-2">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-3 sm:mb-4">
             Nuestros Productos
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
             Explora nuestra selección de suplementos deportivos de las mejores marcas
           </p>
         </div>
 
         {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
+        <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-8 sm:mb-12 px-2">
           {categories.map((category) => (
             <Button
               key={category}
               variant={activeCategory === category ? "default" : "outline"}
               size="sm"
               onClick={() => setActiveCategory(category)}
-              className="font-medium"
+              className="font-medium text-xs sm:text-sm px-2.5 sm:px-3"
             >
               {category}
             </Button>
@@ -236,7 +236,7 @@ export function ProductCatalog() {
 
         {/* Product Grid */}
         {!loading && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} {...product} />
             ))}

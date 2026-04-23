@@ -114,20 +114,20 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-background py-12">
         <div className="container mx-auto px-4 max-w-lg">
           <Card className="border-border bg-card">
-            <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="h-8 w-8 text-primary" />
+            <CardContent className="p-6 sm:p-8 text-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <CheckCircle className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
               </div>
               
-              <h1 className="text-2xl font-bold text-foreground mb-2">
+              <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                 Pedido Realizado
               </h1>
               
-              <p className="text-muted-foreground mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
                 Tu numero de pedido es:
               </p>
               
-              <p className="text-3xl font-bold text-primary mb-6">
+              <p className="text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">
                 {orderNumber}
               </p>
               
@@ -184,21 +184,21 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-8">
+    <div className="min-h-screen bg-background py-6 sm:py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <Link 
             href="/carrito" 
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-3 sm:mb-4 text-sm sm:text-base"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver al carrito
           </Link>
-          <h1 className="text-3xl font-bold text-foreground">Finalizar Compra</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Finalizar Compra</h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Customer Form */}
           <Card className="border-border bg-card">
             <CardHeader>

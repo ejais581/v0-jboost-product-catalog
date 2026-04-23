@@ -22,15 +22,15 @@ export function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <Link href="/#inicio" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="#inicio" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Inicio
-          </Link>
-          <Link href="/#productos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          </a>
+          <a href="#productos" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Productos
-          </Link>
-          <Link href="/#contacto" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          </a>
+          <a href="#contacto" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Contacto
-          </Link>
+          </a>
         </nav>
 
         <div className="flex items-center gap-4">
@@ -61,27 +61,27 @@ export function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-            <Link
-              href="/#inicio"
+            <a
+              href="#inicio"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Inicio
-            </Link>
-            <Link
-              href="/#productos"
+            </a>
+            <a
+              href="#productos"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Productos
-            </Link>
-            <Link
-              href="/#contacto"
+            </a>
+            <a
+              href="#contacto"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Contacto
-            </Link>
+            </a>
           </nav>
         </div>
       )}
