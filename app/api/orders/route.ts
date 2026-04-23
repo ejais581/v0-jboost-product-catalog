@@ -39,31 +39,43 @@ export async function POST(request: Request) {
     // Format WhatsApp message
     const whatsappNumber = "543835500992";
     
-    let message = `*NUEVO PEDIDO - ${orderNumber}*\n\n`;
-    message += `*Cliente:* ${customerName}\n`;
-    message += `*Teléfono:* ${customerPhone}\n`;
-    message += `*Email:* ${customerEmail}\n`;
-    message += `*Dirección:* ${customerAddress}\n\n`;
-    message += `*PRODUCTOS:*\n`;
+    let message = `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `🛒 *NUEVO PEDIDO*\n`;
+    message += `📋 *${orderNumber}*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
     
-    items.forEach((item: { name: string; brand: string; weight: string; flavor: string; quantity: number; price: number }) => {
-      // Extract base name (without flavor suffix if it was added)
+    message += `👤 *DATOS DEL CLIENTE*\n\n`;
+    message += `Nombre: ${customerName}\n`;
+    message += `Teléfono: ${customerPhone}\n`;
+    if (customerEmail) {
+      message += `Email: ${customerEmail}\n`;
+    }
+    message += `Dirección: ${customerAddress}\n\n`;
+    
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `📦 *PRODUCTOS*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    items.forEach((item: { name: string; brand: string; weight: string; flavor: string; quantity: number; price: number }, index: number) => {
       const baseName = item.flavor && item.name.includes(` - ${item.flavor}`) 
         ? item.name.replace(` - ${item.flavor}`, '') 
         : item.name;
       
-      message += `• ${baseName} ${item.brand}\n`;
+      message += `*${index + 1}. ${baseName}*\n`;
+      message += `   Marca: ${item.brand}\n`;
       if (item.flavor) {
-        message += `  Sabor: ${item.flavor}\n`;
+        message += `   Sabor: ${item.flavor}\n`;
       }
       if (item.weight) {
-        message += `  Peso: ${item.weight}\n`;
+        message += `   Peso: ${item.weight}\n`;
       }
-      message += `  Cantidad: ${item.quantity}\n`;
-      message += `  Subtotal: $${(item.price * item.quantity).toLocaleString("es-AR")}\n`;
+      message += `   Cantidad: ${item.quantity}\n`;
+      message += `   Precio: $${(item.price * item.quantity).toLocaleString("es-AR")}\n\n`;
     });
     
-    message += `\n*TOTAL A PAGAR: $${total.toLocaleString("es-AR")}*`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `💰 *TOTAL: $${total.toLocaleString("es-AR")}*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━`;
     
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     
