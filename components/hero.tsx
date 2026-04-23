@@ -4,7 +4,7 @@ import { ArrowRight, Shield, Zap } from "lucide-react"
 
 export function Hero() {
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section id="inicio" className="relative min-h-[70vh] sm:min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -17,7 +17,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/80 to-background" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-20">
         <div className="text-center">
           {/* Main Title */}
           <h1 className="font-[family-name:var(--font-display)] text-4xl sm:text-5xl md:text-7xl lg:text-8xl tracking-wide text-foreground mb-4 sm:mb-6">
