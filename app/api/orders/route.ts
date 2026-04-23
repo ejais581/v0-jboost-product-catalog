@@ -12,8 +12,8 @@ export async function POST(request: Request) {
     
     // Format products for storage
     const productsString = items
-      .map((item: { name: string; quantity: number; price: number }) => 
-        `${item.name} x${item.quantity} ($${item.price.toLocaleString("es-AR")})`
+      .map((item: { name: string; brand: string; weight: string; quantity: number; price: number }) => 
+        `${item.name} (${item.brand}${item.weight ? ` - ${item.weight}` : ""}) x${item.quantity} ($${item.price.toLocaleString("es-AR")})`
       )
       .join(" | ");
     
@@ -39,18 +39,43 @@ export async function POST(request: Request) {
     // Format WhatsApp message
     const whatsappNumber = "543835500992";
     
-    let message = `*NUEVO PEDIDO - ${orderNumber}*\n\n`;
-    message += `*Cliente:* ${customerName}\n`;
-    message += `*Teléfono:* ${customerPhone}\n`;
-    message += `*Email:* ${customerEmail}\n`;
-    message += `*Dirección:* ${customerAddress}\n\n`;
-    message += `*PRODUCTOS:*\n`;
+    let message = `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `*NUEVO PEDIDO*\n`;
+    message += `*${orderNumber}*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
     
-    items.forEach((item: { name: string; quantity: number; price: number }) => {
-      message += `• ${item.name} x${item.quantity} - $${(item.price * item.quantity).toLocaleString("es-AR")}\n`;
+    message += `*DATOS DEL CLIENTE*\n\n`;
+    message += `Nombre: ${customerName}\n`;
+    message += `Teléfono: ${customerPhone}\n`;
+    if (customerEmail) {
+      message += `Email: ${customerEmail}\n`;
+    }
+    message += `Dirección: ${customerAddress}\n\n`;
+    
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `*PRODUCTOS*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    items.forEach((item: { name: string; brand: string; weight: string; flavor: string; quantity: number; price: number }, index: number) => {
+      const baseName = item.flavor && item.name.includes(` - ${item.flavor}`) 
+        ? item.name.replace(` - ${item.flavor}`, '') 
+        : item.name;
+      
+      message += `${index + 1}. ${baseName}\n`;
+      message += `   Marca: ${item.brand}\n`;
+      if (item.flavor) {
+        message += `   Sabor: ${item.flavor}\n`;
+      }
+      if (item.weight) {
+        message += `   Contenido: ${item.weight}\n`;
+      }
+      message += `   Cantidad: ${item.quantity}\n`;
+      message += `   Precio: $${(item.price * item.quantity).toLocaleString("es-AR")}\n\n`;
     });
     
-    message += `\n*TOTAL A PAGAR: $${total.toLocaleString("es-AR")}*`;
+    message += `━━━━━━━━━━━━━━━━━━━━\n`;
+    message += `*TOTAL: $${total.toLocaleString("es-AR")}*\n`;
+    message += `━━━━━━━━━━━━━━━━━━━━`;
     
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     
