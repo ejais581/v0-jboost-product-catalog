@@ -41,12 +41,12 @@ export async function POST(request: Request) {
     
     let message = `*PEDIDO ${orderNumber}*\n`;
     message += `━━━━━━━━━━━━━━━━\n`;
-    message += `${customerName}\n`;
-    message += `Tel: ${customerPhone}\n`;
+    message += `*Nombre:* ${customerName}\n`;
+    message += `*Telefono:* ${customerPhone}\n`;
     if (customerEmail) {
-      message += `${customerEmail}\n`;
+      message += `*Email:* ${customerEmail}\n`;
     }
-    message += `${customerAddress}\n`;
+    message += `*Direccion:* ${customerAddress}\n`;
     message += `━━━━━━━━━━━━━━━━\n`;
     message += `*PRODUCTOS*\n`;
     
