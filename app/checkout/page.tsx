@@ -184,21 +184,21 @@ export default function CheckoutPage() {
   }
 
   return (
-    <div className="min-h-screen bg-background py-8">
+    <div className="min-h-screen bg-background py-6 sm:py-8">
       <div className="container mx-auto px-4 max-w-4xl">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <Link 
             href="/carrito" 
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors mb-3 sm:mb-4 text-sm sm:text-base"
           >
             <ArrowLeft className="h-4 w-4" />
             Volver al carrito
           </Link>
-          <h1 className="text-3xl font-bold text-foreground">Finalizar Compra</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground">Finalizar Compra</h1>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Customer Form */}
           <Card className="border-border bg-card">
             <CardHeader>
