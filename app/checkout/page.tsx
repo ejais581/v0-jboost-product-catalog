@@ -22,6 +22,7 @@ export default function CheckoutPage() {
     name: "",
     phone: "",
     email: "",
+    locality: "",
     address: "",
   })
   
@@ -29,6 +30,7 @@ export default function CheckoutPage() {
     name: "",
     phone: "",
     email: "",
+    locality: "",
     address: "",
   })
 
@@ -37,6 +39,7 @@ export default function CheckoutPage() {
       name: "",
       phone: "",
       email: "",
+      locality: "",
       address: "",
     }
     
@@ -52,6 +55,10 @@ export default function CheckoutPage() {
       newErrors.email = "El email es requerido"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Email inválido"
+    }
+    
+    if (!formData.locality.trim()) {
+      newErrors.locality = "La localidad es requerida"
     }
     
     if (!formData.address.trim()) {
@@ -80,6 +87,7 @@ export default function CheckoutPage() {
           customerName: formData.name,
           customerPhone: formData.phone,
           customerEmail: formData.email,
+          customerLocality: formData.locality,
           customerAddress: formData.address,
           items: items.map(item => ({
             name: item.name,
@@ -254,13 +262,28 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="space-y-2">
+                  <Label htmlFor="locality" className="text-foreground flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    Localidad
+                  </Label>
+                  <Input
+                    id="locality"
+                    placeholder="Ciudad o localidad"
+                    value={formData.locality}
+                    onChange={(e) => setFormData({ ...formData, locality: e.target.value })}
+                    className={errors.locality ? "border-destructive" : ""}
+                  />
+                  {errors.locality && <p className="text-sm text-destructive">{errors.locality}</p>}
+                </div>
+
+                <div className="space-y-2">
                   <Label htmlFor="address" className="text-foreground flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-primary" />
                     Direccion de entrega
                   </Label>
                   <Input
                     id="address"
-                    placeholder="Calle, numero, ciudad"
+                    placeholder="Calle y numero"
                     value={formData.address}
                     onChange={(e) => setFormData({ ...formData, address: e.target.value })}
                     className={errors.address ? "border-destructive" : ""}

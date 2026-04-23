@@ -5,7 +5,7 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     
-    const { customerName, customerPhone, customerAddress, customerEmail, items, total } = body;
+    const { customerName, customerPhone, customerAddress, customerEmail, customerLocality, items, total } = body;
     
     // Generate order number
     const orderNumber = `JB-${Date.now().toString(36).toUpperCase()}`;
@@ -22,6 +22,7 @@ export async function POST(request: Request) {
       orderNumber,
       customerName,
       customerPhone,
+      customerLocality,
       customerAddress,
       customerEmail,
       products: productsString,
@@ -46,6 +47,7 @@ export async function POST(request: Request) {
     if (customerEmail) {
       message += `*Email:* ${customerEmail}\n`;
     }
+    message += `*Localidad:* ${customerLocality}\n`;
     message += `*Direccion:* ${customerAddress}\n`;
     message += `━━━━━━━━━━━━━━━━\n`;
     message += `*PRODUCTOS*\n`;
