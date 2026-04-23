@@ -160,12 +160,13 @@ const defaultProducts: Product[] = [
   },
 ]
 
-const categories = ["Todos", "Proteína", "Creatina", "Pre-entreno", "Vitaminas", "Colágeno"]
-
 export function ProductCatalog() {
   const [activeCategory, setActiveCategory] = useState("Todos")
   const [products, setProducts] = useState<Product[]>(defaultProducts)
   const [loading, setLoading] = useState(true)
+
+  // Generar categorias dinamicamente de los productos
+  const categories = ["Todos", ...Array.from(new Set(products.map(p => p.category))).sort()]
 
   useEffect(() => {
     async function fetchProducts() {
