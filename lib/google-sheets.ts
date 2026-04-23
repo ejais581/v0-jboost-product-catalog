@@ -37,7 +37,7 @@ export async function saveOrder(order: Order): Promise<boolean> {
           order.customerAddress,
           order.customerEmail,
           order.products,
-          order.total,
+          `$${order.total.toLocaleString("es-AR")}`,
           order.date,
         ]],
       },
