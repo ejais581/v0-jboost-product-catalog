@@ -13,7 +13,8 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   icons: {
     icon: '/icon.jpg',
-    apple: '/icon.jpg',
+    apple: '/apple-icon.jpg',
+    shortcut: '/icon.jpg',
   },
   openGraph: {
     title: 'JBoost - Suplementos Deportivos',
