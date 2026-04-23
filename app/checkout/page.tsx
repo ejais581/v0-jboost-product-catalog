@@ -114,20 +114,20 @@ export default function CheckoutPage() {
       <div className="min-h-screen bg-background py-12">
         <div className="container mx-auto px-4 max-w-lg">
           <Card className="border-border bg-card">
-            <CardContent className="p-8 text-center">
-              <div className="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-6">
-                <CheckCircle className="h-8 w-8 text-primary" />
+            <CardContent className="p-6 sm:p-8 text-center">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                <CheckCircle className="h-7 w-7 sm:h-8 sm:w-8 text-primary" />
               </div>
               
-              <h1 className="text-2xl font-bold text-foreground mb-2">
+              <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
                 Pedido Realizado
               </h1>
               
-              <p className="text-muted-foreground mb-4">
+              <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
                 Tu numero de pedido es:
               </p>
               
-              <p className="text-3xl font-bold text-primary mb-6">
+              <p className="text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">
                 {orderNumber}
               </p>
               
