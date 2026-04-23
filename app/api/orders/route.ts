@@ -40,11 +40,11 @@ export async function POST(request: Request) {
     const whatsappNumber = "543835500992";
     
     let message = `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `🛒 *NUEVO PEDIDO*\n`;
-    message += `📋 *${orderNumber}*\n`;
+    message += `*NUEVO PEDIDO*\n`;
+    message += `*${orderNumber}*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
     
-    message += `👤 *DATOS DEL CLIENTE*\n\n`;
+    message += `*DATOS DEL CLIENTE*\n\n`;
     message += `Nombre: ${customerName}\n`;
     message += `Teléfono: ${customerPhone}\n`;
     if (customerEmail) {
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     message += `Dirección: ${customerAddress}\n\n`;
     
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `📦 *PRODUCTOS*\n`;
+    message += `*PRODUCTOS*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n\n`;
     
     items.forEach((item: { name: string; brand: string; weight: string; flavor: string; quantity: number; price: number }, index: number) => {
@@ -74,7 +74,7 @@ export async function POST(request: Request) {
     });
     
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
-    message += `💰 *TOTAL: $${total.toLocaleString("es-AR")}*\n`;
+    message += `*TOTAL: $${total.toLocaleString("es-AR")}*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━`;
     
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
