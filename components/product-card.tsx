@@ -76,7 +76,7 @@ export function ProductCard({
   }
 
   return (
-    <Card className="group overflow-hidden border-border bg-card hover:border-primary/50 transition-all duration-300 h-full flex flex-col">
+    <Card className="group overflow-hidden border-border bg-card hover:border-primary/50 transition-all duration-300 h-full flex flex-col cursor-default">
       <div className="relative aspect-square overflow-hidden bg-muted">
         <Image
           src={image}
@@ -125,7 +125,7 @@ export function ProductCard({
             <select
               value={selectedFlavor}
               onChange={(e) => setSelectedFlavor(e.target.value)}
-              className="w-full px-3 py-2 bg-secondary text-foreground rounded-md border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm"
+              className="w-full px-3 py-2 bg-secondary text-foreground rounded-md border border-border focus:outline-none focus:ring-2 focus:ring-primary text-sm cursor-pointer"
               disabled={!inStock}
             >
               {flavors.map((flavor) => (
