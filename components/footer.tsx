@@ -1,71 +1,74 @@
 import Link from "next/link"
-import { Instagram, Facebook, Mail, Phone, MapPin } from "lucide-react"
+import { Instagram, Mail, Phone, MapPin } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer id="contacto" className="border-t border-border bg-card py-8 sm:py-12">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+    <footer id="contacto" className="border-t border-border bg-card">
+      <div className="container mx-auto px-4 py-10 sm:py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
-          <div className="col-span-2">
-            <Link href="/" className="flex items-center mb-3 sm:mb-4">
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-foreground">J</span>
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-primary">BOOST</span>
+          <div className="text-center md:text-left">
+            <Link href="/" className="inline-flex items-center mb-4">
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">J</span>
+              <span className="text-2xl sm:text-3xl font-bold tracking-tight text-primary">BOOST</span>
             </Link>
-            <p className="text-muted-foreground text-xs sm:text-sm max-w-md">
-              Tu tienda de confianza para suplementos deportivos de calidad. Proteinas, creatina, vitaminas y todo lo que necesitas para tu entrenamiento.
+            <p className="text-muted-foreground text-sm leading-relaxed max-w-sm mx-auto md:mx-0">
+              Tu tienda de confianza para suplementos deportivos de calidad. Potencia tu entrenamiento con los mejores productos.
             </p>
           </div>
 
-          {/* Links */}
-          <div>
-            <h3 className="font-semibold text-foreground text-sm sm:text-base mb-3 sm:mb-4">Categorias</h3>
-            <ul className="space-y-1.5 sm:space-y-2">
+          {/* Contact Info */}
+          <div className="text-center">
+            <h3 className="font-semibold text-foreground text-lg mb-5">Contactanos</h3>
+            <ul className="space-y-4">
               <li>
-                <Link href="#proteinas" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Proteínas
-                </Link>
+                <a 
+                  href="https://wa.me/543835500992" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Phone className="h-5 w-5 text-primary" />
+                  +54 3835-500992
+                </a>
               </li>
               <li>
-                <Link href="#creatina" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Creatina
-                </Link>
+                <a 
+                  href="mailto:jboostfit@gmail.com"
+                  className="inline-flex items-center gap-3 text-sm text-muted-foreground hover:text-primary transition-colors"
+                >
+                  <Mail className="h-5 w-5 text-primary" />
+                  jboostfit@gmail.com
+                </a>
               </li>
-              <li>
-                <Link href="#vitaminas" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Vitaminas
-                </Link>
-              </li>
-              <li>
-                <Link href="#pre-entreno" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                  Pre-entreno
-                </Link>
+              <li className="inline-flex items-center gap-3 text-sm text-muted-foreground">
+                <MapPin className="h-5 w-5 text-primary" />
+                Belen, Catamarca
               </li>
             </ul>
           </div>
 
-          {/* Contact */}
-          <div>
-            <h3 className="font-semibold text-foreground text-sm sm:text-base mb-3 sm:mb-4">Contacto</h3>
-            <ul className="space-y-2 sm:space-y-3">
-              <li className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
-                <Mail className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
-                <span className="truncate">jboostfit@gmail.com</span>
-              </li>
-              <li className="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
-                <Phone className="h-3 w-3 sm:h-4 sm:w-4 text-primary flex-shrink-0" />
-                +54 3835-500992
-              </li>
-              <li className="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
-                <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-primary mt-0.5 flex-shrink-0" />
-                <span>Belen, Catamarca</span>
-              </li>
-            </ul>
+          {/* Social */}
+          <div className="text-center md:text-right">
+            <h3 className="font-semibold text-foreground text-lg mb-5">Seguinos</h3>
+            <div className="flex justify-center md:justify-end gap-4">
+              <a
+                href="https://instagram.com/jboost.fit"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-muted-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                <Instagram className="h-5 w-5" />
+              </a>
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              @jboost.fit
+            </p>
           </div>
         </div>
 
-        <div className="border-t border-border mt-6 sm:mt-8 pt-6 sm:pt-8 text-center">
-          <p className="text-xs sm:text-sm text-muted-foreground">
+        <div className="border-t border-border mt-10 pt-6 text-center">
+          <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} JBoost. Todos los derechos reservados.
           </p>
         </div>
