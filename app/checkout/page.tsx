@@ -85,6 +85,7 @@ export default function CheckoutPage() {
             name: item.name,
             brand: item.brand,
             weight: item.weight || "",
+            flavor: item.flavor || "",
             quantity: item.quantity,
             price: item.price,
           })),

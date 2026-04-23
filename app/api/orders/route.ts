@@ -46,14 +46,21 @@ export async function POST(request: Request) {
     message += `*Dirección:* ${customerAddress}\n\n`;
     message += `*PRODUCTOS:*\n`;
     
-    items.forEach((item: { name: string; brand: string; weight: string; quantity: number; price: number }) => {
-      message += `• *${item.name}*\n`;
-      message += `  Marca: ${item.brand}\n`;
+    items.forEach((item: { name: string; brand: string; weight: string; flavor: string; quantity: number; price: number }) => {
+      // Extract base name (without flavor suffix if it was added)
+      const baseName = item.flavor && item.name.includes(` - ${item.flavor}`) 
+        ? item.name.replace(` - ${item.flavor}`, '') 
+        : item.name;
+      
+      message += `• ${baseName} ${item.brand}\n`;
+      if (item.flavor) {
+        message += `  Sabor: ${item.flavor}\n`;
+      }
       if (item.weight) {
         message += `  Peso: ${item.weight}\n`;
       }
       message += `  Cantidad: ${item.quantity}\n`;
-      message += `  Subtotal: $${(item.price * item.quantity).toLocaleString("es-AR")}\n\n`;
+      message += `  Subtotal: $${(item.price * item.quantity).toLocaleString("es-AR")}\n`;
     });
     
     message += `\n*TOTAL A PAGAR: $${total.toLocaleString("es-AR")}*`;
