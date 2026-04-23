@@ -67,7 +67,7 @@ export async function POST(request: Request) {
         message += `   Sabor: ${item.flavor}\n`;
       }
       if (item.weight) {
-        message += `   Peso: ${item.weight}\n`;
+        message += `   Contenido: ${item.weight}\n`;
       }
       message += `   Cantidad: ${item.quantity}\n`;
       message += `   Precio: $${(item.price * item.quantity).toLocaleString("es-AR")}\n\n`;
