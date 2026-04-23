@@ -61,7 +61,7 @@ export async function POST(request: Request) {
         ? item.name.replace(` - ${item.flavor}`, '') 
         : item.name;
       
-      message += `*${index + 1}. ${baseName}*\n`;
+      message += `${index + 1}. ${baseName}\n`;
       message += `   Marca: ${item.brand}\n`;
       if (item.flavor) {
         message += `   Sabor: ${item.flavor}\n`;
