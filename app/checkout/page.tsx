@@ -22,6 +22,7 @@ export default function CheckoutPage() {
     name: "",
     phone: "",
     email: "",
+    province: "",
     locality: "",
     address: "",
   })
@@ -30,6 +31,7 @@ export default function CheckoutPage() {
     name: "",
     phone: "",
     email: "",
+    province: "",
     locality: "",
     address: "",
   })
@@ -39,6 +41,7 @@ export default function CheckoutPage() {
       name: "",
       phone: "",
       email: "",
+      province: "",
       locality: "",
       address: "",
     }
@@ -55,6 +58,10 @@ export default function CheckoutPage() {
       newErrors.email = "El email es requerido"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Email inválido"
+    }
+    
+    if (!formData.province.trim()) {
+      newErrors.province = "La provincia es requerida"
     }
     
     if (!formData.locality.trim()) {
@@ -87,6 +94,7 @@ export default function CheckoutPage() {
           customerName: formData.name,
           customerPhone: formData.phone,
           customerEmail: formData.email,
+          customerProvince: formData.province,
           customerLocality: formData.locality,
           customerAddress: formData.address,
           items: items.map(item => ({
@@ -262,13 +270,28 @@ export default function CheckoutPage() {
                 </div>
 
                 <div className="space-y-2">
+                  <Label htmlFor="province" className="text-foreground flex items-center gap-2">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    Provincia
+                  </Label>
+                  <Input
+                    id="province"
+                    placeholder="Ej: Catamarca"
+                    value={formData.province}
+                    onChange={(e) => setFormData({ ...formData, province: e.target.value })}
+                    className={errors.province ? "border-destructive" : ""}
+                  />
+                  {errors.province && <p className="text-sm text-destructive">{errors.province}</p>}
+                </div>
+
+                <div className="space-y-2">
                   <Label htmlFor="locality" className="text-foreground flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-primary" />
                     Localidad
                   </Label>
                   <Input
                     id="locality"
-                    placeholder="Ciudad o localidad"
+                    placeholder="Ej: Belen"
                     value={formData.locality}
                     onChange={(e) => setFormData({ ...formData, locality: e.target.value })}
                     className={errors.locality ? "border-destructive" : ""}

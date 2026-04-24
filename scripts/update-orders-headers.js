@@ -14,10 +14,10 @@ async function updateOrdersHeaders() {
   // Update headers in Pedidos sheet
   await sheets.spreadsheets.values.update({
     spreadsheetId: process.env.GOOGLE_SHEET_ID,
-    range: "Pedidos!A1:I1",
+    range: "Pedidos!A1:J1",
     valueInputOption: "USER_ENTERED",
     requestBody: {
-      values: [["Numero Pedido", "Nombre", "Telefono", "Localidad", "Direccion", "Email", "Productos", "Total", "Fecha"]],
+      values: [["Numero Pedido", "Nombre", "Telefono", "Provincia", "Localidad", "Direccion", "Email", "Productos", "Total", "Fecha"]],
     },
   });
 
