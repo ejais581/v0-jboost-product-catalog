@@ -69,6 +69,7 @@ export function ProductCard({
         brand,
         image,
         price: finalPrice,
+        originalPrice: offerPrice ? price : undefined,
         weight,
         flavor: selectedFlavor || undefined,
       },

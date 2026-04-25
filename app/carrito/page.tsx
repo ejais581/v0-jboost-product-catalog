@@ -110,11 +110,19 @@ export default function CarritoPage() {
 
                           {/* Price */}
                           <div className="text-left sm:text-right">
+                            {item.originalPrice && (
+                              <p className="text-xs text-muted-foreground line-through">
+                                ${(item.originalPrice * item.quantity).toLocaleString('es-AR')}
+                              </p>
+                            )}
                             <p className="text-base sm:text-lg font-bold text-primary">
                               ${(item.price * item.quantity).toLocaleString('es-AR')}
                             </p>
                             {item.quantity > 1 && (
                               <p className="text-xs text-muted-foreground">
+                                {item.originalPrice && (
+                                  <span className="line-through mr-1">${item.originalPrice.toLocaleString('es-AR')}</span>
+                                )}
                                 ${item.price.toLocaleString('es-AR')} c/u
                               </p>
                             )}
