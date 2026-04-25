@@ -302,7 +302,7 @@ export default function CheckoutPage() {
                 <div className="space-y-2">
                   <Label htmlFor="address" className="text-foreground flex items-center gap-2">
                     <MapPin className="h-4 w-4 text-primary" />
-                    Direccion de entrega
+                    Direccion
                   </Label>
                   <Input
                     id="address"
@@ -326,7 +326,7 @@ export default function CheckoutPage() {
                       Procesando...
                     </>
                   ) : (
-                    `Realizar Pedido - $${totalPrice.toLocaleString("es-AR")}`
+                    `Confirmar Pedido - $${totalPrice.toLocaleString("es-AR")}`
                   )}
                 </Button>
               </form>
