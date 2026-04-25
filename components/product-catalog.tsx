@@ -15,6 +15,7 @@ interface Product {
   description: string
   image: string
   price: number
+  offerPrice?: number | null
   inStock: boolean
   whatIs: string
   benefits: string
