@@ -67,6 +67,7 @@ export interface Product {
   benefits: string;
   bestTime: string;
   flavors: string[];
+  offerPrice: number | null;
 }
 
 export async function getProducts(): Promise<Product[]> {
@@ -83,7 +84,7 @@ export async function getProducts(): Promise<Product[]> {
 
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: "Productos!A2:O", // Skip header row
+      range: "Productos!A2:P", // Skip header row - includes offerPrice column
     });
 
     const rows = response.data.values;
@@ -107,6 +108,7 @@ export async function getProducts(): Promise<Product[]> {
       benefits: row[11] || "",
       bestTime: row[12] || "",
       flavors: row[13] ? row[13].split(",").map((f: string) => f.trim()).filter((f: string) => f.length > 0) : [],
+      offerPrice: row[14] ? parseFloat(row[14]) : null,
     }));
   } catch (error) {
     console.error("Error fetching products from Google Sheets:", error);

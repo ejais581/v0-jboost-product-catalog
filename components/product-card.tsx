@@ -26,6 +26,7 @@ interface ProductCardProps {
   servings?: string
   weight?: string
   price: number
+  offerPrice?: number | null
   inStock: boolean
   whatIs: string
   benefits: string
@@ -43,6 +44,7 @@ export function ProductCard({
   servings,
   weight,
   price,
+  offerPrice,
   inStock,
   whatIs,
   benefits,
@@ -57,6 +59,8 @@ export function ProductCard({
   const increaseQuantity = () => setQuantity(prev => prev + 1)
   const decreaseQuantity = () => setQuantity(prev => (prev > 1 ? prev - 1 : 1))
 
+  const finalPrice = offerPrice ?? price
+  
   const handleAddToCart = () => {
     addToCart(
       {
@@ -64,7 +68,8 @@ export function ProductCard({
         name: selectedFlavor ? `${name} - ${selectedFlavor}` : name,
         brand,
         image,
-        price,
+        price: finalPrice,
+        originalPrice: offerPrice ? price : undefined,
         weight,
         flavor: selectedFlavor || undefined,
       },
@@ -138,10 +143,21 @@ export function ProductCard({
         )}
 
         {/* Price */}
-        <div className="mb-3">
-          <span className="text-xl sm:text-2xl font-bold text-primary">
-            ${price.toLocaleString('es-AR')}
-          </span>
+        <div className="mb-3 flex items-center gap-2">
+          {offerPrice ? (
+            <>
+              <span className="text-sm text-muted-foreground line-through">
+                ${price.toLocaleString('es-AR')}
+              </span>
+              <span className="text-xl sm:text-2xl font-bold text-primary">
+                ${offerPrice.toLocaleString('es-AR')}
+              </span>
+            </>
+          ) : (
+            <span className="text-xl sm:text-2xl font-bold text-primary">
+              ${price.toLocaleString('es-AR')}
+            </span>
+          )}
         </div>
 
         {/* Action Buttons */}

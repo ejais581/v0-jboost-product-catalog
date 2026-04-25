@@ -8,6 +8,7 @@ export interface CartItem {
   brand: string
   image: string
   price: number
+  originalPrice?: number
   quantity: number
   weight?: string
   flavor?: string
